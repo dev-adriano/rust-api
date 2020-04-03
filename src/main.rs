@@ -1,5 +1,6 @@
 #[macro_use]
 extern crate log;
+extern crate reqwest;
 
 use actix_web::{App, HttpServer};
 use listenfd::ListenFd;
