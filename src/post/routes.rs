@@ -1,15 +1,15 @@
-use crate::post::{Post, get_image};
+use crate::post::{NasaImage, Image, get_image};
 use actix_web::{post, web, HttpResponse, Responder};
 use serde_json::json;
 
 #[post("/posts")]
-async fn create(post: web::Json<Post>) -> impl Responder {
-    info!("Image Src: {}", post.image_source_url);
-    let _ = get_image();
+async fn create(nasa_image: web::Json<NasaImage>) -> impl Responder {
+    info!("Image Src: {}", nasa_image.image_source_url);
+    let _ = get_image(&nasa_image.image_source_url);
     //info!("{:?}", res);
-    let json_post = post.into_inner();
-    info!("{}", json!(json_post));
-    HttpResponse::Created().json(json_post)
+    let src_json = nasa_image.into_inner();
+    info!("{}", json!(src_json));
+    HttpResponse::Created().json(src_json)
 }
 
 pub fn init_routes(cfg: &mut web::ServiceConfig) {
