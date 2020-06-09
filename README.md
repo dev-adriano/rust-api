@@ -1,2 +1,2 @@
-# Rest API in RUST
-A REST API in Rust with Actix web 2.0 and Diesel
+# Rustodon 
+A REST API for publishing on mastodon
